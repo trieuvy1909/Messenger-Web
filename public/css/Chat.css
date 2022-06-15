@@ -1,0 +1,186 @@
+.logo
+{
+    background-color: white;
+    border-radius: 20px;
+    font-size: 20px;
+    color:lightskyblue;
+}
+.logo:hover
+{
+    background-color: white;
+    border-radius: 20px;
+    font-size: 25px;
+    background: lightskyblue;
+    color:white;
+    text-shadow: 2px 2px 5px red;
+}
+body
+{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,180,233,1) 100%);
+}
+#chat {
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; */
+    overflow-y: scroll;
+    max-height: 80vh;
+    padding: 16px;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 8px;
+
+}
+
+.hoder {
+    max-width: 50%;
+    width: fit-content;
+    background-color: #D7D7D7;
+    border-radius: 4px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    left: auto;
+    /* align-self: flex-start; */
+    /* flex: 0 1 auto; */
+}
+.hoder:hover {
+    background-color: silver;
+}
+body
+.me {
+    background-color: greenyellow;
+    margin-left: auto
+    /* align-self: flex-end; */
+}
+
+.me:hover {
+    background-color: yellowgreen;
+}
+
+form{
+    margin-bottom: 150px;
+}
+table{
+    margin-bottom: 150px;
+}
+footer {
+    position: fixed;
+    bottom:10px;
+    width:100%;
+    border-radius: 20px;
+}
+ul ul a {
+    color: white;
+    font-size: 15px;
+    padding-left: 30px;
+    background: rgb(1, 112, 112);
+}
+.dropdown-toggle::after {
+    display: block;
+	position: absolute;
+    transform: translateY(-50%);
+	top: 50%;
+	color: black;
+    right: 20px;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+.navbar {
+    padding: 15px 10px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+	margin-bottom: 40px;
+    background: linear-gradient(to right, #ddd6f3, #faaca8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+/* sidebar */
+
+.wrapper {
+    width:100%;
+    align-items:stretch;
+	display:flex;
+}
+
+/* ---------------------------------------------------
+    nội dung
+----------------------------------------------------- */
+
+#content {
+	min-height:100vh;
+    width:100%;
+    padding:20px;
+}
+
+.hoder {
+    max-width: 50%;
+    width: fit-content;
+    background-color: #D7D7D7;
+    border-radius: 4px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    left: auto;
+    height:60px;
+    border-radius:10px;
+}
+
+.hoder:hover {
+    background-color: silver;
+}
+
+.me {
+    max-width: 50%;
+    width: fit-content;
+    background-color: greenyellow;
+    margin-top: 4px;
+    box-sizing: border-box;
+    margin-left: auto;
+    height:60px;
+    border-radius:10px;
+}
+
+.me:hover {
+    background-color: yellowgreen;
+}
+.chat-room
+{
+    max-width: 100%;
+    width: 500px;
+    background-color: white;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.list-user-chat-item
+{
+    border-radius: 20px;
+    background-color: white;
+    height: 60px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+.list-account-grid
+{
+    list-style:none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+    grid-gap:0.6rem;
+}
+.list-account-grid-item
+{
+    display: flex;
+}
+#messageBox
+{
+    width: 100%;
+    height: 60px;
+    border-radius: 20px;
+    text-align: left;
+    border: none;
+}
+#send
+{
+    height: 60px;
+    border-radius: 20px;
+}

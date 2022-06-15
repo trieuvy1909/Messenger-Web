@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-sm">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link logo" href="/"><b>Chat Web</b></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+              <li class="nav-item ml-auto">
+                <div class="nav-link dropdown-toggle mr-2" id="userDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span><b>{{userfullname}}</b></span>
+                            <img class="img-profile rounded-circle width="32" height="32"" src="/images/user.jpg">
+                </div>
+                    <!-- Dropdown - User Information -->
+                    <div class="dropdown-menu dropdown-menu-right shadow rounded" aria-labelledby="userDropdown">
+                        {{!-- <div class="dropdown-divider"></div> --}}
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+            </li>
+        </ul>
+    </nav>
+<div class="container" >
+    <div class="row">
+        <div class="col-3" id="list_user">
+            {{#each users}}
+                <div class="list-user-chat-item row">
+                    <div class="col-3">
+                        <img class="img-profile rounded-circle width="60" height="60"" src="/images/user.jpg">
+                    </div>
+                    <div class="col-9 d-flex justify-content-start mt-3">
+                        <a class='ml-2' href="/chat/{{this.id}}">{{this.name}}</a>
+                    </div>
+                </div>
+            {{/each}} 
+        </div>
+        <div class="col-6">
+            <div style="border-radius:20px" class="card shadow-lg h-40 mb-2">
+                <div class="row">
+                    <div class="col-2">
+                        <img class="img-profile rounded-circle width="60" height="60"" src="/images/user.jpg">
+                    </div>
+                    <div class="col-10 d-flex justify-content-start mt-3">
+                        <span><b>{{receiver_fullname}}</b></span>
+                    </div>
+                </div>  
+            </div>
+            <div id="chat" data-roomid="{{roomid}}" data-userid="{{userid}}" class='chat-room'>
+                {{#each messages}}
+                <div style= "display: block;" class="{{this.style}} p-1">
+                    {{this.message}}
+                </div>
+                {{!-- <div class="{{this.style}} bg-white">
+                    {{this.time}}   
+                </div> --}}
+                {{/each}}
+            </div>
+            <div class="row mt-2">
+                <div class="col-10">
+                    <input type="text" id="messageBox" placeholder="Type your message here" class="form-control input-lg"/>
+                </div>
+                <div class="col-2">
+                    <button id="send" class ="btn btn-success" title="Send Message!">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const sendBtn = document.querySelector('#send');
+    const messageBox = document.querySelector('#messageBox');
+    const chatBox = document.getElementById("chat")
+    const {userid, roomid} = chatBox.dataset
+
+    const socket = io()
+    socket.emit("joinRoom", roomid)
+
+    socket.on("joined", m => {
+        console.log(m)
+    })
+
+    //get message form server
+    socket.on("message", get => {
+        showMessage(get.message, "hoder")
+    })
+    
+    //send message to server
+    sendBtn.onclick = function sendMessage() {
+        socket.emit("chat", {user: userid, message: messageBox.value, room: roomid, time: new Date()})
+        showMessage(messageBox.value, "me");
+    }
+
+    messageBox.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault()
+            sendBtn.click()
+        }
+    })
+        
+    function showMessage(content, term) {
+        let show = document.createElement('div')
+        show.innerHTML = content
+        show.classList.add(term)
+        chatBox.appendChild(show);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        messageBox.value = '';
+    }
+</script>
