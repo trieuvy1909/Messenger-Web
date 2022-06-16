@@ -15,7 +15,7 @@
     "cookie-parser": "^1.4.6",
     "epxress": "^0.0.1-security",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.5",
+    "express-handlebars": "^6.0.6",
     "express-session": "^1.17.2",
     "express-validator": "^6.14.0",
     "mongoose": "^6.3.3",

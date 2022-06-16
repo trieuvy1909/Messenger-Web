@@ -22,6 +22,11 @@ app.engine(
   handlebars.engine({
     defaultLayout: "main",
     extname: ".hbs",
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir  : [
+      //  path to your partials
+      path.join(__dirname, 'views/partials'),
+  ],
     helpers: {
       style: (senderid, userid)=>{
         if(senderid !== userid) return "hoder"
@@ -30,6 +35,8 @@ app.engine(
     }
   })
 );
+
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "hbs");
 app.use(express.json())
 app.use(express.urlencoded())

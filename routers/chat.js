@@ -73,7 +73,7 @@ router.get("/:id", Auth.authorize ,async (req,res) => {
         
         roomid: conver._id,
         userid: req.session.user._id,
-        userfullname: req.session.user.fullname,
+        fullname: req.session.user.fullname,
         receiver_fullname: receiver.fullname
       };
     return res.render("chat", context)
