@@ -4,16 +4,9 @@ const User = require("../model/user")
 const bcrypt = require("bcrypt")
 const router = express.Router()
 const Auth = require("../midlewares/Auth")
-
-const loginValidator = [
-    check('email').exists().withMessage('Vui lòng nhập email người dùng.')
-    .notEmpty().withMessage('Email người dùng không được bỏ trống')
-    .isEmail().withMessage('Vui lòng nhập đúng email.'),
-  
-    check('password').exists().withMessage('Vui lòng nhập password')
-    .notEmpty().withMessage('Password người dùng không được bỏ trống')
-    .isLength({min:6}).withMessage("Password phải có ít nhất 6 kí tự")
-]
+const changePassValidator = require('../midlewares/changePassValidator');
+const registerValidator = require('../midlewares/registerValidator');
+const loginValidator = require('../midlewares/loginValidator');
 
 router.get("/login",  Auth.isLogin, (req,res) =>{
   res.render("login")
@@ -73,28 +66,6 @@ router.get("/register", Auth.isLogin, (req,res) => {
     res.render("register")
 })
   
-const registerValidator = [
-    check('name').exists().withMessage("Vui lòng nhập tên người dùng.")
-    .notEmpty().withMessage('Tên người dùng không được bỏ trống'), 
-
-    check('email').exists().withMessage('Vui lòng nhập email người dùng.')
-    .notEmpty().withMessage('Email người dùng không được bỏ trống')
-    .isEmail().withMessage('Vui lòng nhập đúng email.'),
-
-    check('password').exists().withMessage('Vui lòng nhập password')
-    .notEmpty().withMessage('Password người dùng không được bỏ trống')
-    .isLength({min:6}).withMessage("Password phải có ít nhất 6 kí tự"),
-
-    check('rePassword').exists().withMessage('Vui lòng nhập xác nhận password')
-    .notEmpty().withMessage('Vui lòng nhập xác nhận password')
-    .custom(async (value, {req}) => {
-        if(value != req.body.password) {
-        throw new Error("Mật khẩu không khớp")
-        }
-        return true;
-    })
-]
-
 router.post("/register",registerValidator,(req,res) => {
     let validation = validationResult(req)
       //validation=validation.mapped()
@@ -119,11 +90,7 @@ router.post("/register",registerValidator,(req,res) => {
     
     user.save()
     .then(() => {
-      req.session.flash = { 
-        message: "Bạn đã đăng ký thành công",
-        type: "success",
-      }
-      res.redirect("/login")
+      res.redirect("/login?message=register_thanhcong")
     })
     .catch(err => {
         req.session.flash = { 
@@ -170,4 +137,58 @@ router.get("/logout", (req,res) => {
   }
 })
 
+router.get("/changepassword", (req,res) => {
+  res.render("changepassword")
+})
+
+router.post('/changepassword', changePassValidator, (req, res) => {
+  let validation = validationResult(req)
+  let { oldpass, confirm1, confirm2 } = req.body;
+  let user = req.session.user;
+  if(validation.errors.length > 0) {
+    req.session.flash = { 
+      message: validation.errors[0].msg,
+      type: "danger",
+    }
+    return res.redirect("/changepassword")
+  }
+  if (validation.errors.length === 0) {
+      if (user) {
+          if (bcrypt.compareSync(oldpass, user.password)) {
+              if (confirm1 === confirm2) {
+                  bcrypt
+                      .hash(confirm2, 10)
+                      .then((hashed) => {
+                          User.findByIdAndUpdate(user._id, {
+                              password: hashed,
+                          }).then(() => {
+                              return res.redirect("changepassword?message=changpassword_thanhcong");
+                          });
+                      })
+                      .catch((err) => {
+                        req.session.flash = { 
+                          message: 'Lỗi đổi password!',
+                          type: "danger",
+                        }
+                        return res.render("changepassword");
+                      });
+              } else {
+                  req.session.flash = { 
+                    message: 'Mật khẩu không khớp!',
+                    type: "danger",
+                  }
+                  return res.render("changepassword");
+              }
+          } else {
+              req.session.flash = { 
+                message: 'Mật khẩu cũ không đúng!',
+                type: "danger",
+              }
+              return res.render("changepassword");
+          }
+      } else {
+          res.redirect("/");
+      }
+  }
+});
 module.exports = router

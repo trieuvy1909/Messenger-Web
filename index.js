@@ -10,7 +10,7 @@ const ChatRouter = require("./routers/chat")
 const Mongodb = require('./config/database');
 const { Server, Socket } = require("socket.io");
 const Messages = require("./model/messages")
-const User = require("./model/messages");
+const User = require("./model/user");
 const { dirname } = require("path");
 const io = new Server(server)
 // const WebSocketServer  = require("ws")
@@ -80,10 +80,9 @@ io.on("connection", (socket) => {
       console.log(e)
     })
   })
-
 })
 
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("http://localhost:" + process.env.PORT)
+server.listen( 3000, () => {
+    console.log("http://localhost:" + 3000)
 })

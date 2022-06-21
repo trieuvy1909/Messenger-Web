@@ -1,7 +1,7 @@
 {{> header}}
 <div class="container">
 
-  <div class="row overflow-hidden shadow" style="border-radius: 20px">
+  <div class="row overflow-hidden shadow mx-auto" style="border-radius: 20px">
     <!-- Users box-->
     <div class="col-4 px-0">
       <div class="bg-white">
@@ -12,7 +12,7 @@
         <div class="messages-box">
           <div class="list-group">
             {{#each users}}
-            <a href="/chat/{{this.id}}" class="list-group-item list-group-item-action">
+            <a href="/chat/{{this.id}}" id="{{this.id}}" class="list-group-item list-group-item-action">
               <div class="media">
                 <img src="/images/user.jpg" alt="user" width="60" height="60" class="rounded-circle">
                 <div class="media-body col-sm-12 col-md-12 d-none d-lg-block">
@@ -41,19 +41,11 @@
               <div class="media w-50 mb-3 {{this.style}}">
                 <div class="media-body">
                     <div class="py-3 px-3 mb-2 chatradius ">
-                      <p class="text-small mb-0">{{this.message}}</p>
+                      <p class="text-break text-small mb-0">{{this.message}}</p>
                     </div>
                       <p class="small text-muted ml-3">{{this.time}}</p>
                 </div>
               </div>
-              {{!-- <div class="media w-50 ml-auto mb-3">
-                <div class="media-body">
-                    <div class="bg-light rounded py-2 px-3 mb-2">
-                      <p class="text-small mb-0 text-white"></p>
-                    </div>
-                      <p class="small text-muted">12:00 PM | Aug 13</p>
-                </div>
-              </div> --}}
             {{/each}}
         </div>
       </div>
@@ -63,6 +55,7 @@
         <div class="input-group">
           <input type="text" id="messageBox" style="border-radius:20px" placeholder="Type a message" aria-describedby="button-addon2" class="form-control border-2 py-4 bg-light ml-3">
           <div class="input-group-append">
+            <button id="image_send" type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-picture-o"></i></button>
             <button id="send" type="submit" class="btn btn-link mr-4"> <i class="fa fa-paper-plane"></i></button>
           </div>
         </div>
@@ -70,11 +63,35 @@
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="file-loading">
+          <input id="input-b9" name="input-b9[]" multiple type="file">
+        </div>
+        <div id="kartik-file-errors"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    const sendBtn = document.querySelector('#send');
-    const messageBox = document.querySelector('#messageBox');
+
+  const sendBtn = document.querySelector('#send');
+  const messageBox = document.querySelector('#messageBox');
+  
+    let user_seclected = document.getElementById('{{receiver_id}}');
+    user_seclected.classList.add("bg-info","text-white");
+
     const chatBox = document.getElementById("chat")
     const {userid, roomid} = chatBox.dataset
     
@@ -113,7 +130,7 @@
         d1.classList.add("media","w-50","mb-3",term)
         d2.classList.add("media-body")
         d3.classList.add("py-3","px-3","mb-2","chatradius")
-        p1.classList.add("text-small","mb-0")
+        p1.classList.add("text-break","text-small","mb-0")
         p2.classList.add("small","text-muted","ml-3")
         p1.innerHTML = content
         let time = new Date();
