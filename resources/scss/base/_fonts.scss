@@ -1,0 +1,56 @@
+#content {
+	min-height:100vh;
+    width:100%;
+    padding:20px;
+}
+.hoder {
+    font-size: 0.9rem;
+    div{
+        div{
+            background-color: lightgray;
+            &:hover{
+                background-color: silver;
+            }
+        }
+    }
+}
+.me {
+    font-size: 0.9rem;
+    margin-left: auto;
+    div{
+        div{
+            background-color:mediumturquoise;
+            &:hover{
+                background-color:rgb(44, 164, 150);
+            }
+        }
+    }
+}
+.tieude_tinhnangdangphattrien
+{
+    color: blueviolet;
+    font-style: italic;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-small {
+  font-size: 0.9rem;
+}
+.chatradius{
+    border-radius: 20px;
+}
+.messages-box{
+    height: 550px;
+    overflow-y: scroll;
+  }
+.chat-box {
+  height: 490px;
+  overflow-y: scroll;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+

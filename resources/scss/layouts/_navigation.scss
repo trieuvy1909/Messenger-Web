@@ -1,0 +1,18 @@
+.navbar {
+    padding: 15px 10px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+    background: linear-gradient(to right, #ddd6f3, #faaca8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.dropdown-toggle::after {
+    display: block;
+	position: absolute;
+    transform: translateY(-50%);
+	top: 50%;
+	color: black;
+    right: 20px;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}

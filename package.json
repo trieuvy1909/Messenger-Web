@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --inspect index.js",
+    "watch": "node-sass --watch resources/scss/ --output public/css/",
     "start:dev": "nodemon index.js"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
     "sweetalert2": "^11.4.17"
   },
   "devDependencies": {
+    "node-sass": "^7.0.3",
     "nodemon": "^2.0.16"
   }
 }

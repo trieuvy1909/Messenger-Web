@@ -1,0 +1,21 @@
+.logo
+{
+    background-color: white;
+    border-radius: 20px;
+    font-size: 20px;
+    color:lightskyblue;
+    &:hover
+    {
+        background-color: white;
+        border-radius: 20px;
+        font-size: 25px;
+        background: lightskyblue;
+        color:white;
+        text-shadow: 2px 2px 5px red;
+    }
+}
+body
+{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,180,233,1) 100%);
+}

@@ -5,16 +5,16 @@ const handlebars = require("express-handlebars")
 const session = require("express-session")
 const cookie = require("cookie-parser")
 const path = require("path")
-const UserRouter = require("./routers/user")
-const ChatRouter = require("./routers/chat")
+const UserRouter = require("./resources/router/user")
+const ChatRouter = require("./resources/router/chat")
+const UserController = require("./resources/controller/user_controller")
+const ChatController = require("./resources/controller//chat_controller")
 const Mongodb = require('./config/database');
 const { Server, Socket } = require("socket.io");
-const Messages = require("./model/messages")
-const User = require("./model/user");
+const Messages = require("./resources/model/messages")
+const User = require("./resources/model/user");
 const { dirname } = require("path");
 const io = new Server(server)
-// const WebSocketServer  = require("ws")
-// const wss = new WebSocketServer.Server({server: server})
 Mongodb.connect()
 
 app.engine(
@@ -22,10 +22,10 @@ app.engine(
   handlebars.engine({
     defaultLayout: "main",
     extname: ".hbs",
-    layoutsDir: path.join(__dirname, 'views/layouts'),
+    layoutsDir: path.join(__dirname, 'resources/views/layouts'),
   partialsDir  : [
       //  path to your partials
-      path.join(__dirname, 'views/partials'),
+      path.join(__dirname, 'resources/views/partials'),
   ],
     helpers: {
       style: (senderid, userid)=>{
@@ -36,7 +36,7 @@ app.engine(
   })
 );
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'resources/views'));
 app.set("view engine", "hbs");
 app.use(express.json())
 app.use(express.urlencoded())

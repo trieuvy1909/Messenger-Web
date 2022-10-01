@@ -1,0 +1,134 @@
+#content {
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px; }
+
+.hoder {
+  font-size: 0.9rem; }
+  .hoder div div {
+    background-color: lightgray; }
+    .hoder div div:hover {
+      background-color: silver; }
+
+.me {
+  font-size: 0.9rem;
+  margin-left: auto; }
+  .me div div {
+    background-color: mediumturquoise; }
+    .me div div:hover {
+      background-color: #2ca496; }
+
+.tieude_tinhnangdangphattrien {
+  color: blueviolet;
+  font-style: italic;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.text-small {
+  font-size: 0.9rem; }
+
+.chatradius {
+  border-radius: 20px; }
+
+.messages-box {
+  height: 550px;
+  overflow-y: scroll; }
+
+.chat-box {
+  height: 490px;
+  overflow-y: scroll; }
+
+.rounded-lg {
+  border-radius: 0.5rem; }
+
+.logo {
+  background-color: white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: lightskyblue; }
+  .logo:hover {
+    background-color: white;
+    border-radius: 20px;
+    font-size: 25px;
+    background: lightskyblue;
+    color: white;
+    text-shadow: 2px 2px 5px red; }
+
+body {
+  background: #eeaeca;
+  background: radial-gradient(circle, #eeaeca 0%, #94b4e9 100%); }
+
+.list-user-chat-item {
+  border-radius: 20px;
+  background-color: white;
+  height: 60px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px; }
+
+.list-account-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 0.6rem; }
+
+.list-account-grid-item {
+  display: flex; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 20px; }
+
+.navbar {
+  padding: 15px 10px;
+  border-radius: 20px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #ddd6f3, #faaca8);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  color: black;
+  right: 20px; }
+
+a[data-toggle="collapse"] {
+  position: relative; }
+
+.wrapper {
+  width: 100%;
+  align-items: stretch;
+  display: flex; }
+
+input::placeholder {
+  font-size: 0.9rem;
+  color: #999; }
+
+ul ul a {
+  color: white;
+  font-size: 15px;
+  padding-left: 30px;
+  background: #017070; }
+
+::-webkit-scrollbar {
+  width: 15px; }
+
+::-webkit-scrollbar-track {
+  width: 15px;
+  background: #f5f5f5; }
+
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #ddd;
+  outline: 1px solid slategrey;
+  border-radius: 1rem; }
+
+table {
+  margin-bottom: 150px; }

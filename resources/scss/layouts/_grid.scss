@@ -1,0 +1,19 @@
+.list-user-chat-item
+{
+    border-radius: 20px;
+    background-color: white;
+    height: 60px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+.list-account-grid
+{
+    list-style:none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+    grid-gap:0.6rem;
+}
+.list-account-grid-item
+{
+    display: flex;
+}
