@@ -43,6 +43,12 @@
 .rounded-lg {
   border-radius: 0.5rem; }
 
+.title_font {
+  background: #3f5efb;
+  background: radial-gradient(circle, #3f5efb 0%, #fc466b 100%);
+  border-radius: 15px;
+  padding: 5px; }
+
 .logo {
   background-color: white;
   border-radius: 20px;
@@ -55,10 +61,6 @@
     background: lightskyblue;
     color: white;
     text-shadow: 2px 2px 5px red; }
-
-body {
-  background: #eeaeca;
-  background: radial-gradient(circle, #eeaeca 0%, #94b4e9 100%); }
 
 .list-user-chat-item {
   border-radius: 20px;
@@ -132,3 +134,7 @@ ul ul a {
 
 table {
   margin-bottom: 150px; }
+
+body {
+  background: #eeaeca;
+  background: radial-gradient(circle, #eeaeca 0%, #94b4e9 100%); }
