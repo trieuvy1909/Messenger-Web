@@ -13,8 +13,10 @@ router.get("/uploadavatar",  (req,res) =>{
 })
 
 router.get("/updateinformation", (req,res) =>{
-  res.render("tinhnangdangphattrien")
+  res.render("updateinformation")
 })
+
+router.post("/updateinformation",loginValidator,user_controller.updateinformation);
 
 router.get("/login",  Auth.isLogin, (req,res) =>{
   res.render("login")

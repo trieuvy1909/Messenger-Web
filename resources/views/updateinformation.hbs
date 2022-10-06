@@ -1,0 +1,49 @@
+{{> header}}
+<div class="container">
+    <h2 class="text-center">Cập nhật thông tin cá nhân</h2>
+    <div class="row shadow bg-white mt-3" style="border-radius: 20px;height:500px">
+        <div class="col-lg-5 d-none d-lg-block">
+            <img class="w-100 h-100 ml-4"  style="border-radius:30px" src="images/changepassword.jpg" >
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 p-4 offset-xl-1">
+            <form action="/updateinformation" method="post" class="mt-5">
+                <div class="form-group mb-4">
+                    <label class="form-label" for="fullname">Họ tên</label>
+                    <input onclick="clearErrorMessage()" type="text" name="fullname" id="fullname" class="form-control form-control-lg" />
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label" for="phone">Số điện thoại</label>
+                    <input onclick="clearErrorMessage()" type="text" name="phone" id="phone" class="form-control form-control-lg" />
+                </div>
+                <div class="row form-group mb-4">
+                    <div class="col-lg-6">
+                        <div class="form-group mb-6">
+                            <label class="form-label" for="birthday">Ngày tháng năm sinh</label>
+                            <input onclick="clearErrorMessage()" type="date" name="birthday" id="birthday" class="form-control form-control-lg" />
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label" for="gender">Giới tính</label>
+                        <div class="select">
+                            <select id="gender" name="gender">
+                                <option selected value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                {{#if flash}}
+                    <div class="form-group">
+                        <div id="errorMessage" class="alert alert-{{flash.type}} alert-dismissible fade show" id="errorMessage">
+                        {{flash.message}}
+                        </div>
+                    </div>
+                {{/if}}                          
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-lg gradient-custom">Xác nhận</button>
+                <a href="/" class="btn btn-secondary btn-lg  gradient-custom">Hủy</a>
+            </form>
+        </div>
+    </div>
+</div>
+{{> footer}}

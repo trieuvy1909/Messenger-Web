@@ -14,6 +14,17 @@ const Account = new Schema({
     fullname: {
         type: String,
         require: true
+    },
+    phone:{
+        type: String
+    }
+    ,
+    birthday:{
+        type: Date
+    }
+    ,
+    gender:{
+        type: String
     }
 })
 

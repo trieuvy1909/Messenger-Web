@@ -178,6 +178,10 @@ class UserController{
             }
         }
     }
+    updateinformation(req,res)
+    {
+        return res.render("updateinformation");
+    }
 }
 
 module.exports = new UserController;
