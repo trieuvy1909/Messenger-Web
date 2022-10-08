@@ -15,6 +15,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
     "epxress": "^0.0.1-security",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",

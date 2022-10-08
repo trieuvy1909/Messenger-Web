@@ -39,9 +39,13 @@ app.engine(
 app.set('views', path.join(__dirname, 'resources/views'));
 app.set("view engine", "hbs");
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 app.use(cookie('GKWebNc'));
-app.use(session({ cookie: { maxAge: 6000000 }}));
+app.use(session({
+  cookie: { maxAge: 6000000 },
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
