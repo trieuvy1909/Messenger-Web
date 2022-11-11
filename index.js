@@ -84,6 +84,11 @@ io.on("connection", (socket) => {
       console.log(e)
     })
   })
+
+
+  socket.on("typing", (name) => {
+    console.log(name + " is typing.");
+  })
 })
 
 

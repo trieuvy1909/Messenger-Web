@@ -63,32 +63,12 @@
     </div>
   </div>
 </div>
-{{!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="file-loading">
-          <input id="input-b9" name="input-b9[]" multiple type="file">
-        </div>
-        <div id="kartik-file-errors"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
+
 <script src="/socket.io/socket.io.js"></script>
 <script>
 
   const sendBtn = document.querySelector('#send');
   const messageBox = document.querySelector('#messageBox');
-  
     let user_seclected = document.getElementById('{{receiver_id}}');
     user_seclected.classList.add("bg-info","text-white");
 
@@ -101,15 +81,7 @@
     socket.on("joined", m => {
         console.log(m)
     })
-    function validate(){
-      // Check that neither input is empty
-      if(messageBox.value === ""){
-        sendBtn.setAttribute("disabled","disabled");
-      } else {
-        sendBtn.removeAttribute("disabled");  
-      }
-    }   
-    messageBox.addEventListener("input", validate);  
+  
      
 
     //get message form server
@@ -125,6 +97,10 @@
     }
 
     messageBox.addEventListener("keypress", function(event) {
+        if(event.key !==' ')
+            {
+              sendBtn.removeAttribute("disabled");  
+            }
         if (event.key === "Enter") {
             event.preventDefault();
             sendBtn.click();

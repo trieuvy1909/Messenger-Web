@@ -25,6 +25,9 @@ const Account = new Schema({
     ,
     gender:{
         type: String
+    },
+    typing:{
+        type: Boolean
     }
 })
 

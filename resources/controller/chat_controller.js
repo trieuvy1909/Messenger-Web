@@ -79,6 +79,7 @@ class ChatController{
         };
         return res.render("chat", context)
     }
+    
 }
 
 module.exports = new ChatController;
